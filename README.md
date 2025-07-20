@@ -5,7 +5,7 @@
 
 ## Description
 
-A Discord bot for rolling dice created for me and my friends (feel free to clone the repo). 
+A private [Discord](https://discord.com/) bot for rolling dice created for me and my friends (feel free to clone the repo). 
 
 DiceBot is built with [Elixir](https://elixir-lang.org/) and the [Nostrum](https://github.com/Kraigie/nostrum) library.
 
