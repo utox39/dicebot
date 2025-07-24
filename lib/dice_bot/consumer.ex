@@ -71,7 +71,7 @@ defmodule DiceBot.Consumer do
   defp handle_roll(msg, dice_type, rolls) do
     with {:ok, faces} <- parse_dice_type(dice_type),
          {:ok, rolls_int} <- parse_rolls(rolls) do
-      results = for _ <- 1..rolls_int, do: :rand.uniform(faces)
+      results = for _ <- 1..rolls_int, do: random_in_range(faces)
       results_str = results |> Enum.map(&to_string/1) |> Enum.join(", ")
 
       total = results |> Enum.sum()
@@ -118,5 +118,10 @@ defmodule DiceBot.Consumer do
       _ ->
         {:error, :invalid_format}
     end
+  end
+
+  def random_in_range(max) when max > 0 do
+    <<random_int::unsigned-integer-32>> = :crypto.strong_rand_bytes(4)
+    rem(random_int, max) + 1
   end
 end
